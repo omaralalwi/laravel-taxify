@@ -28,7 +28,7 @@ return [
     |
     */
 
-    TaxConfigKeys::DEFAULT_RATE => env('TAXIFY_DEFAULT_RATE', TaxDefaults::RATE),
+    TaxConfigKeys::RATE => env('TAXIFY_DEFAULT_RATE', TaxDefaults::RATE),
 
     /*
     |--------------------------------------------------------------------------
@@ -40,7 +40,7 @@ return [
     |
     */
 
-    TaxConfigKeys::DEFAULT_TYPE => env('TAXIFY_DEFAULT_TYPE', TaxDefaults::TYPE),
+    TaxConfigKeys::TYPE => env('TAXIFY_DEFAULT_TYPE', TaxDefaults::TYPE),
 
     /*
     |--------------------------------------------------------------------------
