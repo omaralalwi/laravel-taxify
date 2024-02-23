@@ -18,6 +18,15 @@ composer require omaralalwi/laravel-taxify
 // Usage description here
 ```
 
+#### config keys (Optional)
+add these default config keys to env file , also add any additional config keys as needed.
+it's up to you, if you did not add them, the default values will taken (default profile `default`, default rate `0.10` (10%) , default type `percentage`)
+```json
+DEFAULT_TAXIFY_PROFILE="default"
+TAXIFY_DEFAULT_RATE="0.10"
+TAXIFY_DEFAULT_TYPE="percentage"
+```
+
 ### Testing
 
 ```bash
