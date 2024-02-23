@@ -4,18 +4,19 @@ use Illuminate\Support\Facades\Log;
 use Omaralalwi\LaravelTaxify\Enums\TaxConfigKeys;
 use Omaralalwi\LaravelTaxify\Enums\TaxTransformKeys;
 use Omaralalwi\LaravelTaxify\Enums\TaxDefaults;
+use Omaralalwi\LaravelTaxify\Enums\TaxTypes;
 use Omaralalwi\LaravelTaxify\Transformers\TaxifyTransformer;
 use Omaralalwi\LaravelTaxify\Exceptions\CalculateTaxException;
-
 
 if (!function_exists('getTaxAmount')) {
     function getTaxAmount($amount, $profile = null): float
     {
         try {
             $taxRate = getTaxRate($profile);
+            $taxType = getTaxType($profile);
 
             if (is_numeric($amount)) {
-                return ($taxRate * $amount);
+                return ($taxType === TaxTypes::PERCENTAGE) ? ($taxRate * $amount) : $taxRate;
             } else {
                 Log::error("Error while calculating tax. Provided number is not numeric. Provided value is: $amount");
             }
@@ -30,13 +31,31 @@ if (!function_exists('getTaxAmount')) {
 if (!function_exists('getTaxRate')) {
     function getTaxRate($profile = null): float
     {
-        return $profile  && !is_null($profile) ?
-            config("taxify.profiles.$profile." . TaxConfigKeys::RATE, 0.0) :
-            config("taxify.profiles." . TaxDefaults::PROFILE . '.' . TaxConfigKeys::RATE, 0.0);
+        $configKeyRate = $profile && !is_null($profile) ?
+            "taxify.profiles.$profile." . TaxConfigKeys::RATE :
+            "taxify.profiles." . TaxDefaults::PROFILE . '.' . TaxConfigKeys::RATE;
+
+        $taxType = getTaxType($profile);
+
+        if ($taxType === TaxTypes::FIXED) {
+            return 0.0; // For fixed tax, return 0.0 as tax rate
+        }
+
+        return config($configKeyRate, 0.0); // Return the configured tax rate, defaulting to 0.0
     }
 }
 
-// return result as object by default
+
+if (!function_exists('getTaxType')) {
+    function getTaxType($profile = null): string
+    {
+        return $profile && !is_null($profile) ?
+            config("taxify.profiles.$profile." . TaxConfigKeys::TYPE, TaxTypes::PERCENTAGE) :
+            config("taxify.profiles." . TaxDefaults::PROFILE . '.' . TaxConfigKeys::TYPE, TaxTypes::PERCENTAGE);
+    }
+}
+
+// Return result as an object by default
 if (!function_exists('calculateTax')) {
     function calculateTax($amount, $profile = null, $asArray = false)
     {
