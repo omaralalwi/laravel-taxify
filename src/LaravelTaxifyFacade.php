@@ -14,8 +14,10 @@ class LaravelTaxifyFacade extends Facade
      *
      * @return string
      */
-    protected static function getFacadeAccessor()
-    {
-        return 'laravel-taxify';
-    }
+    // Not Used yet
+//    protected static function getFacadeAccessor()
+//    {
+//        return 'laravel-taxify';
+//    }
+
 }

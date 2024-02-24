@@ -1,6 +1,6 @@
 <?php
 
-namespace Omaralalwi\LaravelTaxify\Tests\Feature;
+namespace Omaralalwi\LaravelTaxify\Tests;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;

@@ -4,5 +4,5 @@ namespace Omaralalwi\LaravelTaxify;
 
 class LaravelTaxify
 {
-    // Build your next great package.
+    // Not Used yet
 }

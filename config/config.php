@@ -1,9 +1,6 @@
 <?php
 
-use Omaralalwi\LaravelTaxify\Enums\TaxDefaults;
-use Omaralalwi\LaravelTaxify\Enums\TaxConfigKeys;
-use Omaralalwi\LaravelTaxify\Enums\TaxTransformKeys;
-use Omaralalwi\LaravelTaxify\Enums\TaxTypes;
+use Omaralalwi\LaravelTaxify\Enums\{TaxDefaults,TaxConfigKeys, TaxifyKeys,TaxTypes,  TaxTransformKeys};
 
 return [
 
@@ -52,7 +49,7 @@ return [
     |
     */
 
-    'profiles' => [
+    TaxifyKeys::PROFILES_CONFIG_KEY => [
 
         TaxDefaults::PROFILE => [
             TaxConfigKeys::RATE => env('TAXIFY_DEFAULT_RATE', TaxDefaults::RATE),
@@ -82,7 +79,7 @@ return [
     |
     */
 
-    'transform_keys' => [
+    TaxConfigKeys::TRANSFORM_KEYs => [
         TaxTransformKeys::TAX_RATE,
         TaxTransformKeys::TAX_AMOUNT,
         TaxTransformKeys::AMOUNT_WITH_TAX,
@@ -97,7 +94,7 @@ return [
     |
     */
 
-    'types' => [
+    TaxConfigKeys::TYPES => [
         TaxTypes::PERCENTAGE,
         TaxTypes::FIXED,
     ],

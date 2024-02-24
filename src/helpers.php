@@ -1,11 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Log;
-use Omaralalwi\LaravelTaxify\Enums\TaxConfigKeys;
-use Omaralalwi\LaravelTaxify\Enums\TaxDefaults;
-use Omaralalwi\LaravelTaxify\Enums\TaxTypes;
 use Omaralalwi\LaravelTaxify\Transformers\TaxifyTransformer;
 use Omaralalwi\LaravelTaxify\Exceptions\CalculateTaxException;
+use Omaralalwi\LaravelTaxify\Enums\{TaxifyKeys, TaxConfigKeys, TaxDefaults, TaxTypes};
 
 /**
  * Calculate the tax amount based on the given amount and tax profile.
@@ -94,8 +92,8 @@ if (!function_exists('getTaxType')) {
     function getTaxType(?string $profile = null): string
     {
         return $profile && !is_null($profile) ?
-            config("taxify.profiles.$profile." . TaxConfigKeys::TYPE) :
-            config("taxify.profiles." . TaxDefaults::PROFILE . '.' . TaxConfigKeys::TYPE, TaxTypes::PERCENTAGE);
+            config(TaxifyKeys::CONFIG_FILE.'.'.TaxifyKeys::PROFILES_CONFIG_KEY.'.'.$profile. TaxConfigKeys::TYPE) :
+            config(TaxifyKeys::CONFIG_FILE.'.'.TaxifyKeys::PROFILES_CONFIG_KEY.'.'.TaxDefaults::PROFILE.'.' .TaxConfigKeys::TYPE, TaxTypes::PERCENTAGE);
     }
 }
 
