@@ -3,7 +3,21 @@
     "description": "Laravel Taxify provides a set of helper functions and classes to simplify tax (VAT) calculations within Laravel applications. that allow developers to easily integrate tax calculation functionalities into their projects. it's offers a straightforward and efficient solution Designed to streamline the process of handling taxes.",
     "keywords": [
         "omaralalwi",
-        "laravel-taxify"
+        "laravel-taxify",
+        "laravel-VAT",
+        "VAT-package",
+        "Tax-package",
+        "php-Tax-package",
+        "laravel-Tax-package",
+        "laravel-helpers",
+        "tax-calculation",
+        "laravel-helper",
+        "VAT-calculation",
+        "laravel-facade",
+        "VAT-helper",
+        "tax-helper",
+        "Laravel-library",
+        "Laravel-VAT-helper"
     ],
     "homepage": "https://github.com/omaralalwi/laravel-taxify",
     "license": "MIT",
@@ -17,17 +31,18 @@
         }
     ],
     "require": {
-        "php": "^7.4|^8.1",
-        "illuminate/support": "^8.0"
+        "php": "^7.4|^8.0|^8.1"
     },
     "require-dev": {
-        "orchestra/testbench": "^6.0",
-        "phpunit/phpunit": "^9.0"
+        "phpunit/phpunit": "^8.5.8|^9.3.3|^10.0"
     },
     "autoload": {
         "psr-4": {
             "Omaralalwi\\LaravelTaxify\\": "src"
-        }
+        },
+        "files": [
+            "src/helpers.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
