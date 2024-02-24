@@ -14,7 +14,8 @@ if (!function_exists('getTaxAmount')) {
             $taxRate = getTaxRate($profile);
             $taxType = getTaxType($profile);
 
-            return ($taxType === TaxTypes::PERCENTAGE) ? ($taxRate * $amount) : $taxRate;
+            $calculatedAmount = ($taxType === TaxTypes::PERCENTAGE) ? ($taxRate * $amount) : $taxRate;
+            return (float) number_format($calculatedAmount, 2);
         } catch (Throwable $e) {
             $msg = 'Error while getting tax amount: ' . $e->getMessage();
             Log::error($msg);
@@ -31,6 +32,28 @@ if (!function_exists('getTaxRate')) {
             "taxify.profiles." . TaxDefaults::PROFILE . '.' . TaxConfigKeys::RATE;
 
         return (float) config($configKeyRate, TaxDefaults::RATE);
+    }
+}
+
+if (!function_exists('getTaxRateAsPercentage')) {
+    function getTaxRateAsPercentage(?string $profile = null): string
+    {
+        try {
+            $taxRate = getTaxRate($profile);
+            $taxType = getTaxType($profile);
+
+            if ($taxType === TaxTypes::PERCENTAGE) {
+                return sprintf("%.2f%%", $taxRate * 100);
+            } else {
+                $msg = 'the getTaxRateAsPercentage only for percentage types of tax profiles ';
+                Log::error($msg);
+                throw new CalculateTaxException($msg);
+            }
+        } catch (Throwable $e) {
+            $msg = 'Error while getting tax rate as percentage: ' . $e->getMessage();
+            Log::error($msg);
+            throw new CalculateTaxException($msg);
+        }
     }
 }
 
