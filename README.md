@@ -12,19 +12,28 @@ You can install the package via Composer:
 composer require omaralalwi/laravel-taxify
 ````
 
-## Usage
+## Compatibility
+#### Supported Laravel Versions
+This package supports Laravel versions `5.8`, `6.x` , `7.x`, `8.x`, `9.x`, `10.x`.
 
-#### config keys EX: (Optional)
+#### Supported PHP Versions
+This package supports php versions `7.4`, `8.0` , `8.1`, `8.2`, `8.3`.
 
-add these default config keys to env file , also add any additional config keys as needed.
-it's up to you, if you did not add them, the default values will taken (default profile `default`, default rate `0.10` (10%) , default type `percentage`)
+## Configuration
+
+### Environment Variables
+
+You can configure Laravel Taxify by adding the following default configuration keys to your `.env` file. If you do not add these, the default values will be used.
+
+For a percentage tax type:
+
 ```json
 DEFAULT_TAXIFY_PROFILE="default"
 TAXIFY_DEFAULT_RATE="0.10"
 TAXIFY_DEFAULT_TYPE="percentage"
 ```
 
-OR like this if the type `fixed`.
+For a fixed tax type:
 
 ```json
 DEFAULT_TAXIFY_PROFILE="default"
@@ -32,9 +41,11 @@ TAXIFY_DEFAULT_RATE=50
 TAXIFY_DEFAULT_TYPE="fixed"
 ```
 
-**Note** the `TAXIFY_DEFAULT_RATE` , it is number alternate of rate number in second case, because the `type` is `fixed`.
+**Note:** The `TAXIFY_DEFAULT_RATE` is a number representing the rate when the type is `fixed`.
 
-#### Examples usage
+## Usage
+
+### Helper Functions
 
 - get Tax As object (default)
   by default the function return result as object
@@ -81,7 +92,7 @@ Result
 access it as object property
 ```json
 $taxAmount = $tax['tax_amount']
- // 25
+// 25
 $AmountWithTax = $tax['amount_with_tax']
 // 275
 $taxRate = $tax['tax_rate']
@@ -107,8 +118,8 @@ $tax = calculateTaxForCollection([$productAmount,$featureAmount, $sarrantyAmount
 Result
 ```json
      'amount_with_tax' => 485.21,
-     'tax_amount' => 44.11,
-     'tax_rate' => 0.1,
+'tax_amount' => 44.11,
+'tax_rate' => 0.1,
 ```
 
 access it as object property
@@ -122,7 +133,7 @@ $taxRate = $tax->tax_rate
 ```
 
 - get Tax Amount as number
-- ```json
+```json
 $amount = 250;
 getTaxAmount($amount);
 // Result : 25

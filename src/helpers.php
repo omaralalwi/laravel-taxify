@@ -7,7 +7,6 @@ use Omaralalwi\LaravelTaxify\Enums\TaxTypes;
 use Omaralalwi\LaravelTaxify\Transformers\TaxifyTransformer;
 use Omaralalwi\LaravelTaxify\Exceptions\CalculateTaxException;
 
-
 /**
  * Calculate the tax amount based on the given amount and tax profile.
  *
