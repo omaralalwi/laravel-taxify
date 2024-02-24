@@ -50,7 +50,7 @@ class LaravelTaxifyServiceProvider extends ServiceProvider
     public function register()
     {
         // Automatically apply the package configuration
-        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'laravel-taxify');
+        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'taxify');
 
         // Register the main class to use with the facade
         $this->app->singleton('laravel-taxify', function () {

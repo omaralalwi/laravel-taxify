@@ -8,6 +8,7 @@
     "homepage": "https://github.com/omaralalwi/laravel-taxify",
     "license": "MIT",
     "type": "library",
+    "version": "1.0.1",
     "authors": [
         {
             "name": "omar alalwi",
