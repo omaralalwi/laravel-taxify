@@ -46,6 +46,7 @@ TAXIFY_DEFAULT_TYPE="fixed"
 ## Usage
 
 ### Available Helper Functions
+
 laravel taxify many of helper functions to simplify usige.
 - `calculateTax()` --> common usage.
 - `calculateTaxForCollection()` common usage with E-commerce and Enterprise Applications.
@@ -56,7 +57,7 @@ laravel taxify many of helper functions to simplify usige.
 
 ### Examples:
 
-#### 1. Calculate tax for a single amount:
+#### Calculate tax for an amount:
 
 - get Tax As object (default)
   by default the function return result as object
@@ -64,11 +65,11 @@ laravel taxify many of helper functions to simplify usige.
 $amount = 250;
 $tax = calculateTax($amount,'profileName');
 ```
-Result
+Result (object)
 ```
-    amount_with_tax: 275
-    tax_amount: 25
-    tax_rate: 0.1
+amount_with_tax: 275
+tax_amount: 25
+tax_rate: 0.1
 ```
 access it as object property
 ```json
@@ -94,11 +95,11 @@ $tax = calculateTax($amount,'profileName',true);
 ```
 Result
 ```
-  array (
-    'amount_with_tax' => 220.0,
-    'tax_amount' => 20.0,
-    'tax_rate' => 0.1,
-  );
+array (
+'amount_with_tax' => 220.0,
+'tax_amount' => 20.0,
+'tax_rate' => 0.1,
+);
 ```
 access it as object property
 ```json
@@ -117,7 +118,7 @@ $taxAmount = calculateTax($amount,'',true)['tax_amount'];
 ```
 **Note**: the second param refer to profile, we mad it null to take default profile, second param can take (`default`, null,''') all three values mean `default`.
 
-#### 2. Calculate tax for a collection of amounts:
+#### Calculate tax for a collection of amounts:
 
 like calculateTax but this for a many amounts .
 - get a tax for a collection of amounts by passing amounts as array (first param).
@@ -130,7 +131,7 @@ $chargeAmount = 90;
 
 $tax = calculateTaxForCollection([$productAmount,$featureAmount, $sarrantyAmount, $chargeAmount]);
 ```
-Result
+Result (object)
 ```json
 'amount_with_tax' => 485.21,
 'tax_amount' => 44.11,
@@ -147,6 +148,8 @@ $taxRate = $tax->tax_rate
 // 0.1
 ```
 
+#### Get Tax Amount as numeric value
+
 - get Tax Amount as number
 ```json
 $amount = 250;
@@ -157,9 +160,9 @@ Result
 25
 ```
 
-#### 3. Get tax rate or amount:
+#### Get tax rate or tax amount:
 
-- get Tax Rate or amount (according to tax profile type in config file)
+- get Tax Rate or amount (according to tax type for specified profile in config file)
 
 ```json
 getTaxRate()
@@ -170,15 +173,17 @@ Result
 ```
 
 ```json
-getTaxRate('profileName')
+getTaxRate('sales')
 ```
 Result
 ```php
-if profile tax type is fixed will return the amount , else will return the rate
+50
 ```
+if profile tax type is `fixed` will return the amount (read the tax rate as amount), else will return the tax rate.
+
 **Note**: for default profile no need to pass `profileName`.
 
-#### 4. Get tax type and rate as percentage:
+#### Get tax type:
 
 you can get Tax Type
 ```json
@@ -189,7 +194,7 @@ Result:
 fixed or percentage // according to profile settings
 ```
 
-#### 4. Get tax rate as Percentage number (10%, 15%) - for percentage type Only:
+#### Get tax rate as Percentage number (10%, 15%) - for percentage type Only:
 
 you can get Tax Rate As Percentage
 - you can get a tax rate percentage (for percentage type only)
