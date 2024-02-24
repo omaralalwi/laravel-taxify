@@ -36,32 +36,8 @@ TAXIFY_DEFAULT_TYPE="fixed"
 
 #### Examples usage
 
-- get Tax Amount as number
-- ```json
-$amount = 250;
-getTaxAmount($amount);
-// Result : 25
-```
-
-- get Tax Rate or amount (according to tax profile type in config file)
-
-```json
-getTaxRate()
-// retuls 0.1
-```
-
-```json
-getTaxRate('profileName')
-// retuls if profile tax type is fixed will return the amount , else will return the rate
-```
-- get Tax Type
-```json
-getTaxType('profileName')
-// Result: fixed or percentage // according to profile settings
-```
-
 - get Tax As object (default)
-by default the function return result as object
+  by default the function return result as object
 ```json
 $amount = 250;
 $tax = calculateTax($amount,'profileName'); // profileName is optional
@@ -89,7 +65,7 @@ $taxAmount = calculateTax($amount,'profileName')->tax_amount; // profileName is 
 ```
 
 - get Tax As Array
-you can pass $asArray param as true to get result as array
+  you can pass $asArray param as true to get result as array
 ```json
 $amount = 250;
 $tax = calculateTax($amount,'profileName',true); // profileName is profile name param
@@ -143,6 +119,30 @@ $AmountWithTax = $tax->amount_with_tax
 // 44.11
 $taxRate = $tax->tax_rate
 // 0.1
+```
+
+- get Tax Amount as number
+- ```json
+$amount = 250;
+getTaxAmount($amount);
+// Result : 25
+```
+
+- get Tax Rate or amount (according to tax profile type in config file)
+
+```json
+getTaxRate()
+// retuls 0.1
+```
+
+```json
+getTaxRate('profileName')
+// retuls if profile tax type is fixed will return the amount , else will return the rate
+```
+- get Tax Type
+```json
+getTaxType('profileName')
+// Result: fixed or percentage // according to profile settings
 ```
 
 - get Tax Rate As Percentage
