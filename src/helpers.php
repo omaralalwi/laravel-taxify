@@ -56,7 +56,6 @@ if (!function_exists('calculateTax')) {
         try {
             $taxAmount = getTaxAmount($amount, $profile);
             $taxRate = getTaxRate($profile);
-            clock()->info(['debug info: this is $taxAmount 11 :' => $taxAmount ]);
             if ($asArray) {
                 return TaxifyTransformer::transformToArray(($taxAmount + $amount), $taxAmount, $taxRate);
             } else {
