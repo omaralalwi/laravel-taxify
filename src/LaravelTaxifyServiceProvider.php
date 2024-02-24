@@ -21,22 +21,22 @@ class LaravelTaxifyServiceProvider extends ServiceProvider
 
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__.'/../config/config.php' => config_path('laravel-taxify.php'),
+                __DIR__.'/../config/config.php' => config_path('taxify.php'),
             ], 'config');
 
             // Publishing the views.
             /*$this->publishes([
-                __DIR__.'/../resources/views' => resource_path('views/vendor/laravel-taxify'),
+                __DIR__.'/../resources/views' => resource_path('views/vendor/taxify'),
             ], 'views');*/
 
             // Publishing assets.
             /*$this->publishes([
-                __DIR__.'/../resources/assets' => public_path('vendor/laravel-taxify'),
+                __DIR__.'/../resources/assets' => public_path('vendor/taxify'),
             ], 'assets');*/
 
             // Publishing the translation files.
             /*$this->publishes([
-                __DIR__.'/../resources/lang' => resource_path('lang/vendor/laravel-taxify'),
+                __DIR__.'/../resources/lang' => resource_path('lang/vendor/taxify'),
             ], 'lang');*/
 
             // Registering package commands.
