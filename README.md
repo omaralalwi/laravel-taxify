@@ -27,6 +27,16 @@ TAXIFY_DEFAULT_RATE="0.10"
 TAXIFY_DEFAULT_TYPE="percentage"
 ```
 
+OR like this if the type `fixed`.
+
+```json
+DEFAULT_TAXIFY_PROFILE="default"
+TAXIFY_DEFAULT_RATE=50
+TAXIFY_DEFAULT_TYPE="fixed"
+```
+
+**Note** the `TAXIFY_DEFAULT_RATE` , it is number alternate of rate number in second case, because the `type` is `fixed`.
+
 ### Testing
 
 ```bash

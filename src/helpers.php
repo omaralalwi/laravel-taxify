@@ -35,13 +35,7 @@ if (!function_exists('getTaxRate')) {
             "taxify.profiles.$profile." . TaxConfigKeys::RATE :
             "taxify.profiles." . TaxDefaults::PROFILE . '.' . TaxConfigKeys::RATE;
 
-        $taxType = getTaxType($profile);
-
-        if ($taxType === TaxTypes::FIXED) {
-            return 0.0; // For fixed tax, return 0.0 as tax rate
-        }
-
-        return config($configKeyRate, 0.0); // Return the configured tax rate, defaulting to 0.0
+        return config($configKeyRate, TaxDefaults::RATE);
     }
 }
 
@@ -50,7 +44,7 @@ if (!function_exists('getTaxType')) {
     function getTaxType($profile = null): string
     {
         return $profile && !is_null($profile) ?
-            config("taxify.profiles.$profile." . TaxConfigKeys::TYPE, TaxTypes::PERCENTAGE) :
+            config("taxify.profiles.$profile." . TaxConfigKeys::TYPE) :
             config("taxify.profiles." . TaxDefaults::PROFILE . '.' . TaxConfigKeys::TYPE, TaxTypes::PERCENTAGE);
     }
 }
@@ -62,7 +56,7 @@ if (!function_exists('calculateTax')) {
         try {
             $taxAmount = getTaxAmount($amount, $profile);
             $taxRate = getTaxRate($profile);
-
+            clock()->info(['debug info: this is $taxAmount 11 :' => $taxAmount ]);
             if ($asArray) {
                 return TaxifyTransformer::transformToArray(($taxAmount + $amount), $taxAmount, $taxRate);
             } else {
