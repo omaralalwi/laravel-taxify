@@ -166,6 +166,19 @@ Result
 '10.00%'
 ```
 
+## Features
+
+- Calculate tax for individual amounts or a collection of amounts
+- Retrieve tax amount, rate, and type for any profile as individual.
+- Retrieve tax `amount_with_tax` and `tax_amount`  and `tax_rate` for any profile as individual for one amount or a collection of amounts
+- Get tax rate as a percentage (for percentage type only)
+- Customizable configuration options through environment variables easy.
+- helper functions easy-to-use.
+- support all php and laravel versions.
+- Exception Handling: Robust error handling to ensure smooth operation and easy debugging.
+- Logging: Automatic logging of errors and exceptions for better error tracking and debugging.
+- Unit Tests.
+
 ### Testing
 
 ```bash
