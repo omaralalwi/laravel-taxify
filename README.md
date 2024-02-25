@@ -6,23 +6,28 @@ Laravel Taxify provides a set of helper functions and classes to simplify tax (V
 
 ## Installation
 
-You can install the package via Composer:
+You can install latest stable version of package via Composer:
 
+**Note**: version2.0.x support Laravel v8.x and Later , and PHPv8.0.x and up, if your app use older version , please see Compatibility section.
 ```bash
 composer require omaralalwi/laravel-taxify
 ````
 
 ## Compatibility
 
-#### Laravel v7.x and less
-Laravel versions `5.8`, `6.x` , `7.x`, and PHP v`7.4`
+The Laravel Taxify package has different versions based on the compatibility with Laravel and PHP versions.
 
-use V1.0.4
+### Laravel v7.x and Earlier
 
-#### Laravel v8.x and Up
-Laravel versions `8.x`, `9.x`, `10.x` AND PHP v`8.0` , `8.1`, `8.2`, `8.3` and up.
+For Laravel versions `5.8`, `6.x`, `7.x`, and PHP version `7.4`, use version `1.0.4` of the Laravel Taxify package.
 
-use V2.0.x
+```bash
+composer require omaralalwi/laravel-taxify:^1.0.4
+```
+
+### Laravel v8.x and Later
+
+For Laravel versions `8.x`, `9.x`, `10.x`, and PHP versions `8.0`, `8.1`, `8.2`, `8.3`, and higher, use  at least version `2.0.x` of the Laravel Taxify package, and keep up to date.
 
 
 ## Configuration
