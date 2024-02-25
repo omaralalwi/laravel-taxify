@@ -34,11 +34,12 @@
         "php": "^7.4|^8.0|^8.1"
     },
     "require-dev": {
-        "phpunit/phpunit": "^8.5.8|^9.3.3|^10.0"
+        "phpunit/phpunit": "^8.5.8|^9.3.3|^10.5",
+        "orchestra/testbench": "^v6.1.0|^7.0.1|^8.21.1"
     },
     "autoload": {
         "psr-4": {
-            "Omaralalwi\\LaravelTaxify\\": "src"
+            "Omaralalwi\\LaravelTaxify\\": "src/"
         },
         "files": [
             "src/helpers.php"
@@ -55,16 +56,16 @@
 
     },
     "config": {
+        "optimize-autoloader": true,
         "sort-packages": true
     },
     "extra": {
         "laravel": {
             "providers": [
                 "Omaralalwi\\LaravelTaxify\\LaravelTaxifyServiceProvider"
-            ],
-            "aliases": {
-                "LaravelTaxify": "Omaralalwi\\LaravelTaxify\\LaravelTaxifyFacade"
-            }
+            ]
         }
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }

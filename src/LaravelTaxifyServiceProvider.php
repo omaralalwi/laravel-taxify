@@ -3,6 +3,7 @@
 namespace Omaralalwi\LaravelTaxify;
 
 use Illuminate\Support\ServiceProvider;
+use Omaralalwi\LaravelTaxify\Enums\{TaxifyKeys, TaxTransformKeys};
 
 class LaravelTaxifyServiceProvider extends ServiceProvider
 {
@@ -14,33 +15,12 @@ class LaravelTaxifyServiceProvider extends ServiceProvider
         /*
          * Optional methods to load your package assets
          */
-        // $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'laravel-taxify');
-        // $this->loadViewsFrom(__DIR__.'/../resources/views', 'laravel-taxify');
-        // $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
-        // $this->loadRoutesFrom(__DIR__.'/routes.php');
-
         if ($this->app->runningInConsole()) {
             $this->publishes([
                 __DIR__.'/../config/config.php' => config_path('taxify.php'),
             ], 'config');
 
-            // Publishing the views.
-            /*$this->publishes([
-                __DIR__.'/../resources/views' => resource_path('views/vendor/taxify'),
-            ], 'views');*/
-
-            // Publishing assets.
-            /*$this->publishes([
-                __DIR__.'/../resources/assets' => public_path('vendor/taxify'),
-            ], 'assets');*/
-
-            // Publishing the translation files.
-            /*$this->publishes([
-                __DIR__.'/../resources/lang' => resource_path('lang/vendor/taxify'),
-            ], 'lang');*/
-
-            // Registering package commands.
-            // $this->commands([]);
+//             $this->commands([]);
         }
     }
 
@@ -50,11 +30,20 @@ class LaravelTaxifyServiceProvider extends ServiceProvider
     public function register()
     {
         // Automatically apply the package configuration
-        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'taxify');
+        $this->mergeConfigFrom(__DIR__.'/../config/config.php', TaxifyKeys::CONFIG_FILE);
 
-        // Register the main class to use with the facade
-        $this->app->singleton('laravel-taxify', function () {
-            return new LaravelTaxify;
-        });
+        // Register the main class to use with the facade , Not Used yet
+//        $this->app->singleton('laravel-taxify', function () {
+//            return new LaravelTaxify;
+//        });
+    }
+
+    protected function registerCommands(): void
+    {
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                //
+            ]);
+        }
     }
 }

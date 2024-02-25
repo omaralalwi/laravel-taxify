@@ -1,25 +1,29 @@
 <?php
 
 use Illuminate\Support\Facades\Log;
-use Omaralalwi\LaravelTaxify\Enums\TaxConfigKeys;
-use Omaralalwi\LaravelTaxify\Enums\TaxTransformKeys;
-use Omaralalwi\LaravelTaxify\Enums\TaxDefaults;
-use Omaralalwi\LaravelTaxify\Enums\TaxTypes;
 use Omaralalwi\LaravelTaxify\Transformers\TaxifyTransformer;
 use Omaralalwi\LaravelTaxify\Exceptions\CalculateTaxException;
+use Omaralalwi\LaravelTaxify\Enums\{TaxifyKeys, TaxConfigKeys, TaxDefaults, TaxTypes};
 
+/**
+ * Calculate the tax amount based on the given amount and tax profile.
+ *
+ * @param float $amount The original amount to calculate tax for.
+ * @param string|null $profile The tax profile to use. If not provided, the default profile will be used.
+ *
+ * @return float The calculated tax amount.
+ *
+ * @throws CalculateTaxException If an error occurs during the calculation.
+ */
 if (!function_exists('getTaxAmount')) {
-    function getTaxAmount($amount, $profile = null): float
+    function getTaxAmount(float $amount, ?string $profile = null): float
     {
         try {
             $taxRate = getTaxRate($profile);
             $taxType = getTaxType($profile);
 
-            if (is_numeric($amount)) {
-                return ($taxType === TaxTypes::PERCENTAGE) ? ($taxRate * $amount) : $taxRate;
-            } else {
-                Log::error("Error while calculating tax. Provided number is not numeric. Provided value is: $amount");
-            }
+            $calculatedAmount = ($taxType === TaxTypes::PERCENTAGE) ? ($taxRate * $amount) : $taxRate;
+            return (float) $calculatedAmount;
         } catch (Throwable $e) {
             $msg = 'Error while getting tax amount: ' . $e->getMessage();
             Log::error($msg);
@@ -28,50 +32,119 @@ if (!function_exists('getTaxAmount')) {
     }
 }
 
+/**
+ * Get the tax rate based on the given tax profile.
+ *
+ * @param string|null $profile The tax profile to use. If not provided, the default profile will be used.
+ *
+ * @return float The tax rate.
+ */
 if (!function_exists('getTaxRate')) {
-    function getTaxRate($profile = null): float
+    function getTaxRate(?string $profile = null): float
     {
         $configKeyRate = $profile && !is_null($profile) ?
-            "taxify.profiles.$profile." . TaxConfigKeys::RATE :
-            "taxify.profiles." . TaxDefaults::PROFILE . '.' . TaxConfigKeys::RATE;
+            TaxifyKeys::CONFIG_FILE.'.'.TaxifyKeys::PROFILES_CONFIG_KEY.'.'.$profile.'.'.TaxConfigKeys::RATE :
+            TaxifyKeys::CONFIG_FILE.'.'.TaxifyKeys::PROFILES_CONFIG_KEY.'.'.TaxDefaults::PROFILE.'.'.TaxConfigKeys::RATE;
 
-        $taxType = getTaxType($profile);
-
-        if ($taxType === TaxTypes::FIXED) {
-            return 0.0; // For fixed tax, return 0.0 as tax rate
-        }
-
-        return config($configKeyRate, 0.0); // Return the configured tax rate, defaulting to 0.0
+        return (float) config($configKeyRate, TaxDefaults::RATE);
     }
 }
 
+/**
+ * Get the tax rate formatted as a percentage based on the given tax profile.
+ *
+ * @param string|null $profile The tax profile to use. If not provided, the default profile will be used.
+ *
+ * @return string The formatted tax rate as a percentage.
+ *
+ * @throws CalculateTaxException If an error occurs during the calculation.
+ */
+if (!function_exists('getTaxRateAsPercentage')) {
+    function getTaxRateAsPercentage(?string $profile = null): string
+    {
+        try {
+            $taxRate = getTaxRate($profile);
+            $taxType = getTaxType($profile);
 
+            if ($taxType === TaxTypes::PERCENTAGE) {
+                return sprintf("%.2f%%", $taxRate * 100);
+            } else {
+                $msg = 'the getTaxRateAsPercentage only for percentage types of tax profiles ';
+                Log::error($msg);
+                throw new CalculateTaxException($msg);
+            }
+        } catch (Throwable $e) {
+            $msg = 'Error while getting tax rate as percentage: ' . $e->getMessage();
+            Log::error($msg);
+            throw new CalculateTaxException($msg);
+        }
+    }
+}
+
+/**
+ * Get the tax type based on the given tax profile.
+ *
+ * @param string|null $profile The tax profile to use. If not provided, the default profile will be used.
+ *
+ * @return string The tax type.
+ */
 if (!function_exists('getTaxType')) {
-    function getTaxType($profile = null): string
+    function getTaxType(?string $profile = null): string
     {
         return $profile && !is_null($profile) ?
-            config("taxify.profiles.$profile." . TaxConfigKeys::TYPE, TaxTypes::PERCENTAGE) :
-            config("taxify.profiles." . TaxDefaults::PROFILE . '.' . TaxConfigKeys::TYPE, TaxTypes::PERCENTAGE);
+            config(TaxifyKeys::CONFIG_FILE.'.'.TaxifyKeys::PROFILES_CONFIG_KEY.'.'.$profile.'.'.TaxConfigKeys::TYPE) :
+            config(TaxifyKeys::CONFIG_FILE.'.'.TaxifyKeys::PROFILES_CONFIG_KEY.'.'.TaxDefaults::PROFILE.'.'.TaxConfigKeys::TYPE, TaxTypes::PERCENTAGE);
     }
 }
 
-// Return result as an object by default
+/**
+ * Calculate the tax details based on the given amount, tax profile, and format preference.
+ *
+ * @param float $amount The original amount to calculate tax for.
+ * @param string|null $profile The tax profile to use. If not provided, the default profile will be used.
+ * @param bool $asArray Whether to return the result as an array.
+ *
+ * @return object|array The tax details object or array.
+ *
+ * @throws CalculateTaxException If an error occurs during the calculation.
+ */
 if (!function_exists('calculateTax')) {
-    function calculateTax($amount, $profile = null, $asArray = false)
+    function calculateTax(float $amount, ?string $profile = null, bool $asArray = false): object|array
     {
         try {
             $taxAmount = getTaxAmount($amount, $profile);
-            $taxRate = getTaxRate($profile);
-
-            if ($asArray) {
-                return TaxifyTransformer::transformToArray(($taxAmount + $amount), $taxAmount, $taxRate);
-            } else {
-                return TaxifyTransformer::transformToObject(($taxAmount + $amount), $taxAmount, $taxRate);
-            }
+                return TaxifyTransformer::transform(($taxAmount + $amount), $taxAmount, getTaxRate($profile), $asArray);
         } catch (Throwable $e) {
             $msg = 'Error while calculating tax for amount: ' . $e->getMessage();
             Log::error($msg);
             throw new CalculateTaxException($msg);
         }
+    }
+}
+
+/**
+ * Calculate the total tax details for a collection of amounts based on the given tax profile and format preference.
+ *
+ * @param array $amounts The collection of amounts to calculate tax for.
+ * @param string|null $profile The tax profile to use. If not provided, the default profile will be used.
+ * @param bool $asArray Whether to return the result as an array.
+ *
+ * @return object|array The total tax details object or array.
+ *
+ * @throws CalculateTaxException If an error occurs during the calculation.
+ */
+if (!function_exists('calculateTaxForCollection')) {
+    function calculateTaxForCollection(array $amounts, ?string $profile = null, bool $asArray = false): object|array
+    {
+        $totalTax =  0;
+        $totalAmountWithTax =  0;
+
+        foreach ($amounts as $amount) {
+            $taxDetails = calculateTax($amount, $profile);
+            $totalTax += $taxDetails->tax_amount;
+            $totalAmountWithTax += $taxDetails->amount_with_tax;
+        }
+
+        return TaxifyTransformer::transform($totalAmountWithTax, $totalTax, getTaxRate($profile), $asArray);
     }
 }

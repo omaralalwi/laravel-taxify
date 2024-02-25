@@ -1,9 +1,6 @@
 <?php
 
-use Omaralalwi\LaravelTaxify\Enums\TaxDefaults;
-use Omaralalwi\LaravelTaxify\Enums\TaxConfigKeys;
-use Omaralalwi\LaravelTaxify\Enums\TaxTransformKeys;
-use Omaralalwi\LaravelTaxify\Enums\TaxTypes;
+use Omaralalwi\LaravelTaxify\Enums\{TaxDefaults,TaxConfigKeys, TaxifyKeys,TaxTypes,  TaxTransformKeys};
 
 return [
 
@@ -52,7 +49,7 @@ return [
     |
     */
 
-    'profiles' => [
+    TaxifyKeys::PROFILES_CONFIG_KEY => [
 
         TaxDefaults::PROFILE => [
             TaxConfigKeys::RATE => env('TAXIFY_DEFAULT_RATE', TaxDefaults::RATE),
@@ -61,16 +58,13 @@ return [
 
     /*
          * another profile settings EX:
-
-        'sales' => [
-            TaxConfigKeys::RATE => env('TAXIFY_SALES_RATE', env('TAXIFY_DEFAULT_RATE', TaxDefaults::RATE)),
-            TaxConfigKeys::TYPE => env('TAXIFY_SALES_TYPE', env('TAXIFY_DEFAULT_TYPE', TaxDefaults::TYPE)),
-        ],
-
-        *
     */
+//        'sales' => [
+//            TaxConfigKeys::RATE => env('TAXIFY_SALES_RATE', env('TAXIFY_DEFAULT_RATE', TaxDefaults::RATE)),
+//            TaxConfigKeys::TYPE => env('TAXIFY_SALES_TYPE', env('TAXIFY_DEFAULT_TYPE', TaxDefaults::TYPE)),
+//        ],
 
-        // Add more configurations as needed...
+        // Add more tax profiles as needed...
     ],
 
     /*
@@ -82,7 +76,7 @@ return [
     |
     */
 
-    'transform_keys' => [
+    TaxConfigKeys::TRANSFORM_KEYs => [
         TaxTransformKeys::TAX_RATE,
         TaxTransformKeys::TAX_AMOUNT,
         TaxTransformKeys::AMOUNT_WITH_TAX,
@@ -97,7 +91,7 @@ return [
     |
     */
 
-    'types' => [
+    TaxConfigKeys::TYPES => [
         TaxTypes::PERCENTAGE,
         TaxTypes::FIXED,
     ],
