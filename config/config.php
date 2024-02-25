@@ -58,16 +58,13 @@ return [
 
     /*
          * another profile settings EX:
-
-        'sales' => [
-            TaxConfigKeys::RATE => env('TAXIFY_SALES_RATE', env('TAXIFY_DEFAULT_RATE', TaxDefaults::RATE)),
-            TaxConfigKeys::TYPE => env('TAXIFY_SALES_TYPE', env('TAXIFY_DEFAULT_TYPE', TaxDefaults::TYPE)),
-        ],
-
-        *
     */
+//        'sales' => [
+//            TaxConfigKeys::RATE => env('TAXIFY_SALES_RATE', env('TAXIFY_DEFAULT_RATE', TaxDefaults::RATE)),
+//            TaxConfigKeys::TYPE => env('TAXIFY_SALES_TYPE', env('TAXIFY_DEFAULT_TYPE', TaxDefaults::TYPE)),
+//        ],
 
-        // Add more configurations as needed...
+        // Add more tax profiles as needed...
     ],
 
     /*

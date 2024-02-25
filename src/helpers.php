@@ -23,7 +23,7 @@ if (!function_exists('getTaxAmount')) {
             $taxType = getTaxType($profile);
 
             $calculatedAmount = ($taxType === TaxTypes::PERCENTAGE) ? ($taxRate * $amount) : $taxRate;
-            return (float) number_format($calculatedAmount, 2);
+            return (float) $calculatedAmount;
         } catch (Throwable $e) {
             $msg = 'Error while getting tax amount: ' . $e->getMessage();
             Log::error($msg);
@@ -43,8 +43,8 @@ if (!function_exists('getTaxRate')) {
     function getTaxRate(?string $profile = null): float
     {
         $configKeyRate = $profile && !is_null($profile) ?
-            "taxify.profiles.$profile." . TaxConfigKeys::RATE :
-            "taxify.profiles." . TaxDefaults::PROFILE . '.' . TaxConfigKeys::RATE;
+            TaxifyKeys::CONFIG_FILE.'.'.TaxifyKeys::PROFILES_CONFIG_KEY.'.'.$profile.'.'.TaxConfigKeys::RATE :
+            TaxifyKeys::CONFIG_FILE.'.'.TaxifyKeys::PROFILES_CONFIG_KEY.'.'.TaxDefaults::PROFILE.'.'.TaxConfigKeys::RATE;
 
         return (float) config($configKeyRate, TaxDefaults::RATE);
     }
@@ -92,8 +92,8 @@ if (!function_exists('getTaxType')) {
     function getTaxType(?string $profile = null): string
     {
         return $profile && !is_null($profile) ?
-            config(TaxifyKeys::CONFIG_FILE.'.'.TaxifyKeys::PROFILES_CONFIG_KEY.'.'.$profile. TaxConfigKeys::TYPE) :
-            config(TaxifyKeys::CONFIG_FILE.'.'.TaxifyKeys::PROFILES_CONFIG_KEY.'.'.TaxDefaults::PROFILE.'.' .TaxConfigKeys::TYPE, TaxTypes::PERCENTAGE);
+            config(TaxifyKeys::CONFIG_FILE.'.'.TaxifyKeys::PROFILES_CONFIG_KEY.'.'.$profile.'.'.TaxConfigKeys::TYPE) :
+            config(TaxifyKeys::CONFIG_FILE.'.'.TaxifyKeys::PROFILES_CONFIG_KEY.'.'.TaxDefaults::PROFILE.'.'.TaxConfigKeys::TYPE, TaxTypes::PERCENTAGE);
     }
 }
 

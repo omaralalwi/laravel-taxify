@@ -3,7 +3,6 @@
 namespace Omaralalwi\LaravelTaxify;
 
 use Illuminate\Support\ServiceProvider;
-use Omaralalwi\LaravelTaxify\Console\Commands\RunTaxifyTestsCommand;
 use Omaralalwi\LaravelTaxify\Enums\{TaxifyKeys, TaxTransformKeys};
 
 class LaravelTaxifyServiceProvider extends ServiceProvider
@@ -21,7 +20,7 @@ class LaravelTaxifyServiceProvider extends ServiceProvider
                 __DIR__.'/../config/config.php' => config_path('taxify.php'),
             ], 'config');
 
-             $this->commands([]);
+//             $this->commands([]);
         }
     }
 
@@ -43,7 +42,7 @@ class LaravelTaxifyServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->commands([
-                RunTaxifyTestsCommand::class,
+                //
             ]);
         }
     }
