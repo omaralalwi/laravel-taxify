@@ -1,5 +1,11 @@
 # Laravel Taxify
 
+<p align="center">
+  <a href="https://github.com/omaralalwi/laravel-taxify" target="_blank">
+    <img src="https://raw.githubusercontent.com/omaralalwi/laravel-taxify/main/public/images/taxify.jpg" alt="Laravel Taxify">
+  </a>
+</p>
+
 Laravel Taxify provides a set of helper functions and classes to simplify tax (VAT) calculations within Laravel applications. that allow developers to easily integrate tax calculation functionalities into their projects with multi tax profiles settings and (fixed, percentage) ways. it's offers a straightforward and efficient solution Designed to streamline the process of handling taxes.
 
 ### Note: this package still under development.
