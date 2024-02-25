@@ -13,7 +13,7 @@ You can install latest stable version of package via Composer:
 composer require omaralalwi/laravel-taxify
 ````
 
-```php
+```markdown
 php artisan vendor:publish --provider="Omaralalwi\LaravelTaxify\LaravelTaxifyServiceProvider"
 ```
 
@@ -42,7 +42,7 @@ You can configure Laravel Taxify by adding the following default configuration k
 
 For a percentage tax type:
 
-```json
+```markdown
 DEFAULT_TAXIFY_PROFILE="default"
 TAXIFY_DEFAULT_RATE="0.10"
 TAXIFY_DEFAULT_TYPE="percentage"
@@ -50,7 +50,7 @@ TAXIFY_DEFAULT_TYPE="percentage"
 
 For a fixed tax type:
 
-```json
+```markdown
 DEFAULT_TAXIFY_PROFILE="default"
 TAXIFY_DEFAULT_RATE=50
 TAXIFY_DEFAULT_TYPE="fixed"
@@ -76,7 +76,7 @@ laravel taxify many of helper functions to simplify usige.
 
 - get Tax As object (default)
   by default the function return result as object
-```json
+```markdown
 $amount = 250;
 $tax = calculateTax($amount,'profileName');
 ```
@@ -87,7 +87,7 @@ tax_amount: 25
 tax_rate: 0.1
 ```
 access it as object property
-```json
+```markdown
 $taxAmount = $tax->tax_amount
 // 25
 $AmountWithTax = $tax->amount_with_tax
@@ -97,14 +97,14 @@ $taxRate = $tax->tax_rate
 ```
 
 Or simpilify
-```json
+```markdown
 $amount = 250;
 $taxAmount = calculateTax($amount,'profileName')->tax_amount;
 ```
 
 - get Tax As Array
   you can pass $asArray param as true to get result as array
-```json
+```markdown
 $amount = 250;
 $tax = calculateTax($amount,'profileName',true);
 ```
@@ -117,7 +117,7 @@ array (
 );
 ```
 access it as object property
-```json
+```markdown
 $taxAmount = $tax['tax_amount']
 // 25
 $AmountWithTax = $tax['amount_with_tax']
@@ -127,7 +127,7 @@ $taxRate = $tax['tax_rate']
 ```
 
 Or simpilify
-```json
+```markdown
 $amount = 250;
 $taxAmount = calculateTax($amount,'',true)['tax_amount'];
 ```
@@ -137,7 +137,7 @@ $taxAmount = calculateTax($amount,'',true)['tax_amount'];
 
 like calculateTax but this for a many amounts .
 - get a tax for a collection of amounts by passing amounts as array (first param).
-```json
+```markdown
 // you can pass number as float or integer
 $productAmount = 250;
 $featureAmount = 70.5;
@@ -147,14 +147,14 @@ $chargeAmount = 90;
 $tax = calculateTaxForCollection([$productAmount,$featureAmount, $sarrantyAmount, $chargeAmount]);
 ```
 Result (object)
-```json
+```markdown
 'amount_with_tax' => 485.21,
 'tax_amount' => 44.11,
 'tax_rate' => 0.1,
 ```
 
 access it as object property
-```json
+```markdown
 $taxAmount = $tax->tax_amount
 // 485.21
 $AmountWithTax = $tax->amount_with_tax
@@ -166,12 +166,12 @@ $taxRate = $tax->tax_rate
 #### Get Tax Amount as numeric value
 
 - get Tax Amount as number
-```json
+```markdown
 $amount = 250;
 getTaxAmount($amount);
 ```
 Result
-```php
+```markdown
 25
 ```
 
@@ -179,19 +179,19 @@ Result
 
 - get Tax Rate or amount (according to tax type for specified profile in config file)
 
-```json
+```markdown
 getTaxRate()
 ```
 Result
-```php
+```markdown
 0.1
 ```
 
-```json
+```markdown
 getTaxRate('sales')
 ```
 Result
-```php
+```markdown
 50
 ```
 if profile tax type is `fixed` will return the amount (read the tax rate as amount), else will return the tax rate.
@@ -201,7 +201,7 @@ if profile tax type is `fixed` will return the amount (read the tax rate as amou
 #### Get tax type:
 
 you can get Tax Type
-```json
+```markdown
 getTaxType('profileName')
 ```
 Result:
@@ -213,7 +213,7 @@ fixed or percentage // according to profile settings
 
 you can get Tax Rate As Percentage
 - you can get a tax rate percentage (for percentage type only)
-```json 
+```markdown 
  getTaxRateAsPercentage();
 ```
 Result
