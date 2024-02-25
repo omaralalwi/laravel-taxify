@@ -64,6 +64,8 @@ TAXIFY_DEFAULT_TYPE="fixed"
 
 **Note:** The `TAXIFY_DEFAULT_RATE` is a number representing the rate when the type is `percentage` or the amount when type is `fixed`.
 
+You can add more than one of tax profile in config/taxify.php .
+
 ## Usage
 
 ### Available Helper Functions
