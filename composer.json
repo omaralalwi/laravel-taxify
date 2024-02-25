@@ -22,7 +22,7 @@
     "homepage": "https://github.com/omaralalwi/laravel-taxify",
     "license": "MIT",
     "type": "library",
-    "version": "1.0.4",
+    "version": "2.0.1",
     "authors": [
         {
             "name": "omar alalwi",
@@ -31,10 +31,10 @@
         }
     ],
     "require": {
-        "php": "^7.4"
+        "php": "^8.0|^8.1|^8.2|^8.3"
     },
     "require-dev": {
-        "phpunit/phpunit": "^9.3.3",
+        "phpunit/phpunit": "^9.3.3|^10.5",
         "orchestra/testbench": "^8.21.1"
     },
     "autoload": {
@@ -66,10 +66,4 @@
             ]
         }
     },
-    "support": {
-        "issues": "https://github.com/omaralalwi/laravel-taxify/issues",
-        "source": "https://github.com/omaralalwi/laravel-taxify"
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true
 }
