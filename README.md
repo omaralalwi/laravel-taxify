@@ -13,11 +13,17 @@ composer require omaralalwi/laravel-taxify
 ````
 
 ## Compatibility
-#### Supported Laravel Versions
-This package supports Laravel versions `5.8`, `6.x` , `7.x`, `8.x`, `9.x`, `10.x`.
 
-#### Supported PHP Versions
-This package supports php versions `7.4`, `8.0` , `8.1`, `8.2`, `8.3`.
+#### Laravel v7.x and less
+Laravel versions `5.8`, `6.x` , `7.x`, and PHP v`7.4`
+
+use V1.0.4
+
+#### Laravel v8.x and Up
+Laravel versions `8.x`, `9.x`, `10.x` AND PHP v`8.0` , `8.1`, `8.2`, `8.3` and up.
+
+use V2.0.x
+
 
 ## Configuration
 
