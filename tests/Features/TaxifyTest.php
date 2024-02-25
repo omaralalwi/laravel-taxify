@@ -1,13 +1,9 @@
 <?php
 
-namespace Omaralalwi\LaravelTaxify\Tests\Unit;
+namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Support\Facades\Log;
-use Modules\Settings\app\Enums\DefaultSettings;
 use Omaralalwi\LaravelTaxify\Enums\{TaxConfigKeys, TaxDefaults, TaxifyKeys, TaxTypes};
 use Tests\TestCase;
-use function Features\config;
 
 class TaxifyTest extends TestCase
 {
