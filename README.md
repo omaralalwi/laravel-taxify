@@ -13,6 +13,10 @@ You can install latest stable version of package via Composer:
 composer require omaralalwi/laravel-taxify
 ````
 
+```php
+php artisan vendor:publish --provider="Omaralalwi\LaravelTaxify\LaravelTaxifyServiceProvider"
+```
+
 ## Compatibility
 
 The Laravel Taxify package has different versions based on the compatibility with Laravel and PHP versions.
@@ -234,7 +238,7 @@ Result
 ### Testing
 
 ```bash
-composer test
+php artisan test --filter TaxifyTest
 ```
 
 ### Changelog

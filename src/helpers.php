@@ -109,15 +109,11 @@ if (!function_exists('getTaxType')) {
  * @throws CalculateTaxException If an error occurs during the calculation.
  */
 if (!function_exists('calculateTax')) {
-    function calculateTax(float $amount, ?string $profile = null, bool $asArray = false)
+    function calculateTax(float $amount, ?string $profile = null, bool $asArray = false): object|array
     {
         try {
             $taxAmount = getTaxAmount($amount, $profile);
-            if($asArray) {
-                return TaxifyTransformer::transform(($taxAmount + $amount), $taxAmount, getTaxRate($profile));
-            } else {
-                return TaxifyTransformer::transformAsObject(($taxAmount + $amount), $taxAmount, getTaxRate($profile));
-            }
+            return TaxifyTransformer::transform(($taxAmount + $amount), $taxAmount, getTaxRate($profile), $asArray);
         } catch (Throwable $e) {
             $msg = 'Error while calculating tax for amount: ' . $e->getMessage();
             Log::error($msg);
@@ -138,7 +134,7 @@ if (!function_exists('calculateTax')) {
  * @throws CalculateTaxException If an error occurs during the calculation.
  */
 if (!function_exists('calculateTaxForCollection')) {
-    function calculateTaxForCollection(array $amounts, ?string $profile = null, bool $asArray = false)
+    function calculateTaxForCollection(array $amounts, ?string $profile = null, bool $asArray = false): object|array
     {
         $totalTax =  0;
         $totalAmountWithTax =  0;
@@ -149,10 +145,6 @@ if (!function_exists('calculateTaxForCollection')) {
             $totalAmountWithTax += $taxDetails->amount_with_tax;
         }
 
-        if($asArray) {
-            return TaxifyTransformer::transform($totalAmountWithTax, $totalTax, getTaxRate($profile));
-        } else {
-            return TaxifyTransformer::transformAsObject($totalAmountWithTax, $totalTax, getTaxRate($profile), $asArray);
-        }
+        return TaxifyTransformer::transform($totalAmountWithTax, $totalTax, getTaxRate($profile), $asArray);
     }
 }

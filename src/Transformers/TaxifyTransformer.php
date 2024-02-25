@@ -7,15 +7,10 @@ use Illuminate\Support\Facades\Log;
 
 class TaxifyTransformer
 {
-    public static function transform($totalAmount, $taxAmount, $taxRate = null): array
-    {
-        return self::transformValues($totalAmount, $taxAmount, $taxRate);
-    }
-
-    public static function transformAsObject($totalAmount, $taxAmount, $taxRate = null): object
+    public static function transform($totalAmount, $taxAmount, $taxRate = null, $asArray = false): object|array
     {
         $values = self::transformValues($totalAmount, $taxAmount, $taxRate);
-        return (object) $values;
+        return $asArray ? $values : (object) $values;
     }
 
     public static function transformValues(float $totalAmount, float $taxAmount, ?float $taxRate = null): array
