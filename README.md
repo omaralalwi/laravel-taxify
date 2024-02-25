@@ -62,7 +62,7 @@ TAXIFY_DEFAULT_RATE=50
 TAXIFY_DEFAULT_TYPE="fixed"
 ```
 
-**Note:** The `TAXIFY_DEFAULT_RATE` is a number representing the rate when the type is `fixed`.
+**Note:** The `TAXIFY_DEFAULT_RATE` is a number representing the rate when the type is `percentage` or the amount when type is `fixed`.
 
 ## Usage
 
