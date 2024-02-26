@@ -264,7 +264,7 @@ If you discover any security related issues, please email `omaralwi2010@gmail.co
 
 ## Credits
 
--   [omar alalwi]([https://github.com/omaralalwi](https://omaralalwi.info))
+-   [omar alalwi]([https://github.com/omaralalwi](https://omaralalwi.info)
 
 ## License
 
