@@ -1,0 +1,8 @@
+{
+  "name": "Your Laravel Taxify Docs",
+  "repo": "https://github.com/omaralalwi/laravel-taxify",
+  "loadNavbar": true,
+  "loadSidebar": true,
+  "mergeNavbar": true,
+  "auto2top": true
+}
