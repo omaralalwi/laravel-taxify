@@ -10,26 +10,6 @@ Laravel Taxify provides a set of helper functions and classes to simplify tax (V
 
 ## [Documentation](https://omaralalwi.github.io/laravel-taxify)
 
-## Installation
-
-You can install latest stable version of package via Composer:
-
-**Note**: version2.0.x support Laravel v8.x and Later , and PHPv8.0.x and up, if your app use older version , please see Compatibility section.
-```bash
-composer require omaralalwi/laravel-taxify
-````
-
-publish all package resource
-
-```markdown
-php artisan vendor:publish --provider="Omaralalwi\LaravelTaxify\LaravelTaxifyServiceProvider"
-```
-
-publish only config file
-```markdown
-php artisan vendor:publish --tag=laravel-taxify-config
-```
-
 ## Features
 
 - Calculate tax for individual amounts or a collection of amounts
@@ -48,10 +28,6 @@ php artisan vendor:publish --tag=laravel-taxify-config
 ```bash
 php artisan test --filter TaxifyTest
 ```
-
-### Changelog
-
-Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
 
 ## Contributing
 
