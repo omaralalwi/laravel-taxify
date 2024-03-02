@@ -17,8 +17,8 @@ class LaravelTaxifyServiceProvider extends ServiceProvider
          */
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__.'/../config/config.php' => config_path('taxify.php'),
-            ], 'config');
+                __DIR__.'/../config/config.php' => config_path(TaxifyKeys::CONFIG_FILE.'.php'),
+            ], TaxifyKeys::CONFIG_FILE.'-config');
 
 //             $this->commands([]);
         }
