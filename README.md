@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="https://github.com/omaralalwi/laravel-taxify" target="_blank">
-    <img src="./public/images/taxify.jpg" alt="Laravel Taxify">
+    <img src="https://raw.githubusercontent.com/omaralalwi/laravel-taxify/master/public/images/taxify.jpg" alt="Laravel Taxify">
   </a>
 </p>
 
