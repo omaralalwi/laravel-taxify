@@ -129,7 +129,7 @@ array (
 'tax_rate' => 0.1,
 );
 ```
-access it as object property
+access it as array key
 ```markdown
 $taxAmount = $tax['tax_amount']
 // 25
