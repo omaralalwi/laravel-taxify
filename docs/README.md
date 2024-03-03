@@ -134,11 +134,11 @@ $tax = [
 access it as array key
 ```php
 $taxAmount = $tax['tax_amount']
-// 25
+// 37.5
 $AmountWithTax = $tax['amount_with_tax']
-// 275
+// 287.5
 $taxRate = $tax['tax_rate']
-// 0.1
+// 0.15
 ```
 
 Or simplify access it directly
