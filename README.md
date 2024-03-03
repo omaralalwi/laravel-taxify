@@ -42,7 +42,7 @@ If you discover any security related issues, please email `omaralwi2010@gmail.co
 
 ## Credits
 
--   [omar alalwi](https://omaralalwi.info)
+-   [omar alalwi]([https://omaralalwi.info](https://github.com/omaralalwi)
 
 ## License
 
