@@ -94,8 +94,6 @@ $taxAmount = calculateTax($amount,'',true)['tax_amount'];
 **Note**: the second param refer to profile, we mad it null to take default profile, second param can take (`default`, null,''') all three values mean `default`.
 
 ---
-**NOTE all above 4 ways working with all functions** .
-
 ### Calculate tax for a collection of amounts:
 
 like calculateTax but this for a many amounts .
