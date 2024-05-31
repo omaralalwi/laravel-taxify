@@ -61,12 +61,9 @@ Result
 ```
 access it as object property
 ```php
-$taxAmount = $tax->tax_amount
-// 37.5
-$AmountWithTax = $tax->amount_with_tax
-// 287.5
-$taxRate = $tax->tax_rate
-// 0.15
+$taxAmount = $tax->tax_amount // 37.5
+$AmountWithTax = $tax->amount_with_tax // 287.5
+$taxRate = $tax->tax_rate // 0.15
 ```
 
 Or simplify access it directly
@@ -91,12 +88,9 @@ $tax = [
 ```
 access it as array key
 ```php
-$taxAmount = $tax['tax_amount']
-// 37.5
-$AmountWithTax = $tax['amount_with_tax']
-// 287.5
-$taxRate = $tax['tax_rate']
-// 0.15
+$taxAmount = $tax['tax_amount'] // 37.5
+$AmountWithTax = $tax['amount_with_tax'] // 287.5
+$taxRate = $tax['tax_rate'] // 0.15
 ```
 
 Or simplify access it directly
@@ -229,8 +223,6 @@ TAXIFY_DEFAULT_TYPE="fixed"
 **Note:** The `TAXIFY_DEFAULT_RATE` is a number representing the rate when the type is `percentage` or the amount when type is `fixed`.
 
 You can add more than one of tax profile in config/taxify.php .
-
-
 
 ## Features
 
