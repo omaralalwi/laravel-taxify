@@ -97,7 +97,7 @@ $tax = {
   }
 ```
 ```php
-$taxAmount = $tax->tax_amount // 507.265
+$taxAmount = $tax->tax_amount // 66.165
 ```
 
 ### Get Tax Amount as numeric value
