@@ -6,7 +6,7 @@
   </a>
 </p>
 
-Laravel Taxify provides a set of helper functions and classes to simplify tax (VAT) calculations within Laravel applications. that allow developers to easily integrate tax calculation functionalities into their projects with multi tax profiles settings and (fixed, percentage) ways. it's offers a straightforward and efficient solution Designed to streamline the process of handling taxes.
+set of helper functions and classes to simplify tax (VAT) calculations within Laravel applications. that allow developers to easily integrate tax calculation functionalities into their projects with multi tax profiles settings and (fixed, percentage) ways. it's offers a straightforward and efficient solution Designed to streamline the process of handling taxes.
 ## Requirements
 `Laravel 8.x or up` , for version 2.x .
 
@@ -70,27 +70,6 @@ Result (Object)
 ```
 ---
 
-**Another way**  you can pass $asArray (third param) as true to get result as array
-```php
-$amount = 250;
-$tax = calculateTax($amount,'profileName',true);
-```
-Result
-```
-$tax = [
-    "amount_with_tax" => 287.5,
-    "tax_amount" => 37.5,
-    "tax_rate" => 0.15,
-  ]
-```
-
----
-**Another way get tax_amount only , as array**
-```php
-$amount = 250;
-$taxAmount = calculateTax($amount,'',true)['tax_amount'];
-```
-
 **Note**: the second param refer to profile, we mad it null to take default profile, second param can take (`default`, null,''') all three values mean `default`.
 
 ---
@@ -104,10 +83,10 @@ like calculateTax but this for a many amounts .
 // you can pass number as float or integer
 $productAmount = 250;
 $featureAmount = 70.5;
-$sarrantyAmount = 30.60;
+$warrantyAmount = 30.60;
 $chargeAmount = 90;
 
-$tax = calculateTaxForCollection([$productAmount,$featureAmount, $sarrantyAmount, $chargeAmount]);
+$tax = calculateTaxForCollection([$productAmount,$featureAmount, $warrantyAmount, $chargeAmount]);
 ```
 Result (object)
 ```php
@@ -120,21 +99,6 @@ $tax = {
 ```php
 $taxAmount = $tax->tax_amount // 507.265
 ```
-
-to get a tax for a collection of amounts as array result , just pass third param as `true` like this.
-
-```php
-$tax = calculateTaxForCollection([$productAmount,$featureAmount, $sarrantyAmount, $chargeAmount],'',true);
-```
-Result (array)
-```php
-$tax = [
-    "amount_with_tax" => 507.265,
-    "tax_amount" => 66.165,
-    "tax_rate" => 0.15,
-  ]
-```
----
 
 ### Get Tax Amount as numeric value
 
