@@ -18,7 +18,7 @@ composer require omaralalwi/laravel-taxify
 publish the package's configuration file:
 
 ```php
-php artisan vendor:publish --tag=laravel-taxify-config
+php artisan vendor:publish --tag=taxify
 ```
 
 ## Compatibility
