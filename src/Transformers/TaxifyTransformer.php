@@ -18,9 +18,9 @@ class TaxifyTransformer
         $taxRate = $taxRate ?: getTaxRate();
 
         return [
-            TaxTransformKeys::AMOUNT_WITH_TAX => (float) $totalAmount,
-            TaxTransformKeys::TAX_AMOUNT => (float) $taxAmount,
-            TaxTransformKeys::TAX_RATE => (float) $taxRate,
+            TaxTransformKeys::AMOUNT_WITH_TAX => (float) round($totalAmount,2),
+            TaxTransformKeys::TAX_AMOUNT => (float) round($taxAmount,2),
+            TaxTransformKeys::TAX_RATE => (float) round($taxRate,2),
         ];
     }
 

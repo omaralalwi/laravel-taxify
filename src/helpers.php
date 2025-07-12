@@ -23,7 +23,7 @@ if (!function_exists('getTaxAmount')) {
             $taxType = getTaxType($profile);
 
             $calculatedAmount = ($taxType === TaxTypes::PERCENTAGE) ? ($taxRate * $amount) : $taxRate;
-            return (float) $calculatedAmount;
+            return round($calculatedAmount,2);
         } catch (Throwable $e) {
             $msg = 'Error while getting tax amount: ' . $e->getMessage();
             Log::error($msg);
@@ -46,7 +46,7 @@ if (!function_exists('getTaxRate')) {
             TaxifyKeys::CONFIG_FILE.'.'.TaxifyKeys::PROFILES_CONFIG_KEY.'.'.$profile.'.'.TaxConfigKeys::RATE :
             TaxifyKeys::CONFIG_FILE.'.'.TaxifyKeys::PROFILES_CONFIG_KEY.'.'.TaxDefaults::PROFILE.'.'.TaxConfigKeys::RATE;
 
-        return (float) config($configKeyRate, TaxDefaults::RATE);
+        return round(config($configKeyRate, TaxDefaults::RATE), 2);
     }
 }
 
